@@ -1,0 +1,30 @@
+
+CREATE TABLE useraccount (
+    UserID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255),
+    Password VARCHAR(255),
+    Gender VARCHAR(10),
+    Email VARCHAR(255)
+);
+
+CREATE TABLE Asset (
+    AssetID INT PRIMARY KEY AUTO_INCREMENT,
+    AssetName VARCHAR(255),
+    AssetType VARCHAR(50),
+    Status VARCHAR(20),
+    AssignedEmployee INT,
+    DateNow DATE
+);
+
+
+CREATE TABLE Requests (
+    RequestID INT PRIMARY KEY AUTO_INCREMENT,
+    RequestedEmployee INT,
+    AssetID INT,
+    Status VARCHAR(20) DEFAULT 'processing',
+    Message_Arrival_Status VARCHAR(20) DEFAULT 'new',
+    Message_Status VARCHAR(50),
+    DateNow DATE,
+    FOREIGN KEY (RequestedEmployee) REFERENCES UserAccount(UserID),
+    FOREIGN KEY (AssetID) REFERENCES Asset(AssetID)
+);
